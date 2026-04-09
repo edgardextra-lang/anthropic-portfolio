@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edgard Mbayen Mbayen | Product Manager, Consumer — Anthropic</title>
+<meta name="description" content="Senior Product Manager with 12 years shipping AI-powered consumer products, APIs, and 0-to-1 platforms. Built for Anthropic's Consumer team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   DESIGN TOKENS — Anthropic Design System
+   ======================================== */
+:root {
+  /* Backgrounds */
+  --ivory-light: #faf9f5;
+  --ivory-medium: #f0eee6;
+  --ivory-dark: #e8e6dc;
+  --oat: #e3dacc;
+  /* Text */
+  --slate-dark: #141413;
+  --slate-medium: #3d3d3a;
+  --slate-light: #5e5d59;
+  --slate-faded: rgba(20,20,19,0.10);
+  /* Accent */
+  --accent: #c6613f;
+  --clay: #d97757;
+  --olive: #788c5d;
+  --cactus: #bcd1ca;
+  --sky: #6a9bcc;
+  --heather: #cbcadb;
+  --coral: #ebcece;
+  /* Functional */
+  --white: #fff;
+  --border-light: #e8e6dc;
+  --border-dark: #30302e;
+  --footer-link: #b0aea5;
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  /* Layout */
+  --container: 1140px;
+  --container-lg: 1400px;
+  --container-sm: 720px;
+  --navbar-height: 68px;
+  /* Animation */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--slate-dark);
+  background: var(--ivory-light);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+::selection {
+  background: var(--accent);
+  color: var(--ivory-light);
+}
+
+/* ========================================
+   LOADER
+   ======================================== */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ivory-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.6s var(--ease-out), visibility 0.6s;
+}
+.loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-logo {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--slate-light);
+  letter-spacing: 0.05em;
+}
+.loader-line {
+  width: 160px;
+  height: 1px;
+  background: var(--ivory-dark);
+  position: relative;
+  overflow: hidden;
+}
+.loader-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--slate-dark);
+  animation: loaderSlide 1s var(--ease-out) infinite;
+  transform-origin: left;
+}
+@keyframes loaderSlide {
+  0% { transform: scaleX(0) translateX(0); }
+  50% { transform: scaleX(0.5) translateX(50%); }
+  100% { transform: scaleX(0) translateX(100%); }
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.navbar.scrolled {
+  background: rgba(250, 249, 245, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.navbar-inner {
+  width: 100%;
+  max-width: var(--container-lg);
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-logo {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-logo .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--slate-dark);
+  color: var(--ivory-light);
+  border-radius: 6px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-links a {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.navbar-links a:hover {
+  background: var(--slate-faded);
+}
+.nav-btn {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  height: 36px;
+  padding: 0 16px;
+  background: var(--slate-dark);
+  color: var(--ivory-light);
+  border: 1px solid var(--slate-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+.nav-btn:hover {
+  background: var(--slate-medium);
+  border-color: var(--slate-medium);
+}
+.nav-btn svg { width: 14px; height: 14px; }
+
+/* Mobile */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--slate-dark);
+  margin: 5px 0;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--ivory-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-smooth), visibility 0.4s;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; }
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+}
+.mobile-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--slate-dark);
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+.section { padding: 96px 64px; }
+.section.large-pad { padding: 128px 64px; }
+.section.dark {
+  background: var(--slate-dark);
+  color: var(--ivory-light);
+}
+.section.ivory-med { background: var(--ivory-medium); }
+.section.oat { background: var(--oat); }
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  width: 100%;
+}
+.container.wide { max-width: var(--container-lg); }
+.container.narrow { max-width: var(--container-sm); }
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.display-xl {
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.display-l {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 1.7rem + 1.3vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.display-serif {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.heading-m {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 1.3rem + 0.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.heading-s {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.heading-xs {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.body-l {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.body-m {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.body-s {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.4;
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.text-muted { color: var(--slate-light); }
+.text-footer { color: var(--footer-link); }
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-dark {
+  background: var(--slate-dark);
+  color: var(--ivory-light);
+  border-color: var(--slate-dark);
+}
+.btn-dark:hover {
+  background: var(--slate-medium);
+  border-color: var(--slate-medium);
+}
+.btn-light {
+  background: var(--ivory-light);
+  color: var(--slate-dark);
+  border-color: var(--ivory-dark);
+}
+.btn-light:hover {
+  background: var(--ivory-medium);
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--ivory-light);
+  border-color: var(--accent);
+}
+.btn-accent:hover {
+  background: #b55636;
+  border-color: #b55636;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--slate-dark);
+  border-color: var(--border-light);
+}
+.btn-ghost:hover {
+  background: var(--ivory-medium);
+  border-color: var(--ivory-dark);
+}
+.btn-ghost-light {
+  background: transparent;
+  color: var(--ivory-light);
+  border-color: var(--border-dark);
+}
+.btn-ghost-light:hover {
+  background: rgba(250,249,245,0.1);
+}
+.btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+.btn:hover svg { transform: translateX(2px); }
+.btn-lg {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 18px;
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 64px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  animation: fadeInUp 0.8s var(--ease-out) 0.2s both;
+}
+.hero-tag .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--olive);
+  border-radius: 50%;
+  position: relative;
+}
+.hero-tag .dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(120, 140, 93, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 0; }
+}
+.hero-heading { animation: fadeInUp 0.8s var(--ease-out) 0.4s both; }
+.hero-desc {
+  color: var(--slate-light);
+  max-width: 540px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.6s both;
+}
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.8s both;
+}
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1.2s var(--ease-out) 0.5s both;
+}
+.hero-canvas-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--ivory-medium);
+  position: relative;
+}
+.hero-canvas-wrap canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ========================================
+   SCROLL REVEAL
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ========================================
+   METRICS
+   ======================================== */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.metric-cell {
+  background: var(--ivory-light);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.metric-value {
+  font-family: var(--font-sans);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.metric-desc {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--slate-light);
+  line-height: 1.4;
+}
+
+/* ========================================
+   WHY ANTHROPIC
+   ======================================== */
+.fit-section-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.fit-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.fit-card {
+  background: var(--ivory-light);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fit-card .label { color: var(--accent); }
+.fit-card h3 {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.fit-card p {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--slate-light);
+}
+
+/* ========================================
+   EXPERIENCE
+   ======================================== */
+.timeline { margin-top: 64px; }
+.timeline-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-light);
+}
+.timeline-item:last-child { border-bottom: 1px solid var(--border-light); }
+.timeline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.timeline-date {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--slate-light);
+}
+.timeline-company {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.timeline-title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.timeline-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.timeline-bullet {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--slate-medium);
+  display: flex;
+  gap: 12px;
+}
+.timeline-bullet::before {
+  content: '';
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 10px;
+}
+.timeline-bullet strong {
+  color: var(--slate-dark);
+  font-weight: 600;
+}
+
+/* ========================================
+   SKILLS
+   ======================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.skill-card {
+  background: var(--slate-dark);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.skill-card .label { color: var(--footer-link); }
+.skill-card h3 {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ivory-light);
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.skill-tag {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 200px;
+  background: rgba(250,249,245,0.08);
+  color: var(--footer-link);
+  border: 1px solid rgba(250,249,245,0.08);
+}
+.skill-card.accent-bg {
+  background: var(--accent);
+}
+.skill-card.accent-bg .label { color: rgba(250,249,245,0.6); }
+.skill-card.accent-bg .skill-tag {
+  background: rgba(250,249,245,0.15);
+  border-color: rgba(250,249,245,0.15);
+  color: var(--ivory-light);
+}
+.skill-card.olive-bg { background: var(--olive); }
+.skill-card.olive-bg .label { color: rgba(250,249,245,0.6); }
+.skill-card.olive-bg .skill-tag {
+  background: rgba(250,249,245,0.15);
+  border-color: rgba(250,249,245,0.15);
+  color: var(--ivory-light);
+}
+
+/* Languages row */
+.lang-strip {
+  display: flex;
+  gap: 48px;
+  margin-top: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-dark);
+}
+.lang-item { display: flex; flex-direction: column; gap: 4px; }
+.lang-name {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ivory-light);
+}
+.lang-level {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--footer-link);
+}
+
+/* ========================================
+   EDUCATION
+   ======================================== */
+.edu-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.edu-card {
+  background: var(--ivory-medium);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.edu-card .label { color: var(--accent); }
+.edu-card .degree {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+}
+.edu-card .school {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--slate-light);
+}
+.edu-card .year {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--slate-light);
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+.cta-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 96px 0 128px;
+}
+.cta-block .display-serif {
+  max-width: 700px;
+}
+.cta-block p {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--footer-link);
+  max-width: 500px;
+  line-height: 1.5;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 0 64px;
+}
+.divider.on-dark {
+  background: var(--border-dark);
+  margin: 0;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background: var(--slate-dark);
+  color: var(--ivory-light);
+  padding: 64px 64px 48px;
+}
+.footer-inner {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border-dark);
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-brand-logo {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-brand-logo .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--ivory-light);
+  color: var(--slate-dark);
+  border-radius: 5px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+}
+.footer-links-grid {
+  display: flex;
+  gap: 64px;
+}
+.footer-col { display: flex; flex-direction: column; gap: 12px; }
+.footer-col .label { color: var(--ivory-light); margin-bottom: 4px; }
+.footer-col a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--footer-link);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--ivory-light); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 0;
+}
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--footer-link);
+}
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+.section-hdr {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.section-hdr.centered {
+  text-align: center;
+  align-items: center;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1024px) {
+  .section { padding: 72px 32px; }
+  .section.large-pad { padding: 96px 32px; }
+  .hero { padding: 100px 32px 64px; }
+  .navbar-inner { padding: 0 32px; }
+  .footer { padding: 48px 32px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { display: none; }
+  .fit-section-header { grid-template-columns: 1fr; gap: 16px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .footer-top { flex-direction: column; gap: 32px; }
+  .footer-links-grid { flex-wrap: wrap; gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 56px 20px; }
+  .hero { padding: 88px 20px 48px; }
+  .navbar-inner { padding: 0 20px; }
+  .navbar-links { display: none; }
+  .mobile-toggle { display: block; }
+  .fit-cards { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .edu-row { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; }
+  .hero-buttons .btn { width: 100%; justify-content: center; }
+  .cta-buttons { flex-direction: column; }
+  .footer { padding: 32px 20px; }
+  .lang-strip { flex-wrap: wrap; gap: 24px; }
+  .divider { margin: 0 20px; }
+}
+
+/* ========================================
+   COUNTER
+   ======================================== */
+.counter { display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- ===== LOADER ===== -->
+<div class="loader" id="loader">
+  <div class="loader-logo">EDGARD MBAYEN MBAYEN</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
+  <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">About</a>
+  <a href="#why-anthropic" onclick="document.getElementById('mobileMenu').classList.remove('open')">Why Anthropic</a>
+  <a href="#experience" onclick="document.getElementById('mobileMenu').classList.remove('open')">Experience</a>
+  <a href="#skills" onclick="document.getElementById('mobileMenu').classList.remove('open')">Skills</a>
+  <a href="mailto:edmbayen@gmail.com?subject=Product%20Manager%2C%20Consumer%20%E2%80%94%20Let's%20Talk&body=Hi%20Edgard%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20the%20Product%20Manager%20role%20at%20Anthropic." class="btn btn-dark btn-lg" style="margin-top:16px;">Reach Out</a>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-logo"><span class="mark">E</span> Edgard Mbayen Mbayen</a>
+    <div class="navbar-links">
+      <a href="#about">About</a>
+      <a href="#why-anthropic">Why Anthropic</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+    </div>
+    <a href="mailto:edmbayen@gmail.com?subject=Product%20Manager%2C%20Consumer%20%E2%80%94%20Let's%20Talk&body=Hi%20Edgard%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20the%20Product%20Manager%20role%20at%20Anthropic." class="nav-btn">
+      Reach out
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+    </a>
+    <button class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Open to new opportunities
+      </div>
+      <h1 class="display-xl hero-heading">I ship consumer products that people can't stop using</h1>
+      <p class="body-l hero-desc">12 years in software. 10 in product. From NLP-powered search to 0-to-1 platforms with 1,000+ users in 3 months &mdash; I turn emerging capabilities into products people love.</p>
+      <div class="hero-buttons">
+        <a href="mailto:edmbayen@gmail.com?subject=Product%20Manager%2C%20Consumer%20%E2%80%94%20Let's%20Talk&body=Hi%20Edgard%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20the%20Product%20Manager%20role%20at%20Anthropic." class="btn btn-dark btn-lg">
+          Send me an email
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="#experience" class="btn btn-ghost btn-lg">View experience</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-canvas-wrap">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METRICS ===== -->
+<section class="section ivory-med" id="about">
+  <div class="container">
+    <div class="section-hdr centered reveal">
+      <span class="label" style="color:var(--accent)">Impact</span>
+      <h2 class="display-l">Shipping products that move numbers</h2>
+    </div>
+    <div class="metrics-row">
+      <div class="metric-cell reveal reveal-d1">
+        <span class="metric-value"><span class="counter" data-target="1.5" data-suffix="M" data-prefix="$" data-decimals="1">0</span></span>
+        <span class="metric-desc">New ARR from multi-custodian feature at Croesus</span>
+      </div>
+      <div class="metric-cell reveal reveal-d2">
+        <span class="metric-value"><span class="counter" data-target="70" data-suffix="%">0</span></span>
+        <span class="metric-desc">Faster criteria generation via NLP search module</span>
+      </div>
+      <div class="metric-cell reveal reveal-d3">
+        <span class="metric-value"><span class="counter" data-target="1000" data-suffix="+">0</span></span>
+        <span class="metric-desc">Users onboarded in 3 months on GoTest (0-to-1)</span>
+      </div>
+      <div class="metric-cell reveal reveal-d4">
+        <span class="metric-value"><span class="counter" data-target="200" data-suffix="%">0</span></span>
+        <span class="metric-desc">SLA improvement from backend overhaul at SweetIQ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== WHY ANTHROPIC ===== -->
+<section class="section" id="why-anthropic">
+  <div class="container">
+    <div class="fit-section-header reveal">
+      <div class="section-hdr">
+        <span class="label" style="color:var(--accent)">Why Anthropic</span>
+        <h2 class="display-l">Built for the Consumer team</h2>
+      </div>
+      <p class="body-m text-muted">Anthropic's Consumer team builds AI products used by millions. Every qualification in the role maps directly to products I've shipped and teams I've led.</p>
+    </div>
+    <div class="fit-cards">
+      <div class="fit-card reveal reveal-d1">
+        <span class="label">0-to-1 Execution</span>
+        <h3>From blank page to shipped product</h3>
+        <p>Led 0-to-1 discovery for GoTest &mdash; design sprint, validation interviews, roadmap from concept to MVP. Shipped to 1,000+ users in 3 months with 85% retention. Built multiple mobile apps from scratch across iOS, Android, and Apple Watch.</p>
+      </div>
+      <div class="fit-card reveal reveal-d2">
+        <span class="label">AI/NLP Product Delivery</span>
+        <h3>Turning research into beloved features</h3>
+        <p>Shipped a natural language search feature that became the highest-adoption release of the year. Identified the opportunity through user interviews, championed it through prototyping, partnered with engineers on NLP architecture decisions.</p>
+      </div>
+      <div class="fit-card reveal reveal-d3">
+        <span class="label">Technical Depth</span>
+        <h3>Software engineer turned product leader</h3>
+        <p>Master's in Software Engineering. Started career as a mobile engineer shipping apps end-to-end. Comfortable leading architecture discussions, scoping API integrations, and navigating complex technical constraints with engineering teams.</p>
+      </div>
+      <div class="fit-card reveal reveal-d4">
+        <span class="label">Consumer Instinct</span>
+        <h3>Obsessed with craft and user experience</h3>
+        <p>Shipped a mobile app that improved App Store rating from 1.5 to 4.5 stars. Built a 17,000+ follower community translating complex data into actionable content. Knows what makes experiences intuitive and indispensable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section class="section ivory-med" id="experience">
+  <div class="container">
+    <div class="section-hdr reveal">
+      <span class="label" style="color:var(--accent)">Experience</span>
+      <h2 class="display-l">A decade of shipping product</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Sep 2025 &mdash; Present</span>
+          <span class="timeline-company">EMB &middot; Montreal</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Trader</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Trades crypto derivatives and futures using systematic, rules-based strategies; built frameworks for market entry, position sizing, and risk management.</div>
+            <div class="timeline-bullet">Built a <strong>17,000+ follower</strong> community publishing market analysis, translating complex data into actionable content.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Jan 2022 &mdash; Jun 2025</span>
+          <span class="timeline-company">Croesus &middot; Montreal</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Senior Product Manager</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet"><strong>Flagship AI/NLP delivery:</strong> Shipped a natural language search feature that reduced criteria-generation time by 70% &mdash; highest-adoption feature of the year.</div>
+            <div class="timeline-bullet"><strong>$1.5M ARR feature:</strong> Owned full lifecycle of multi-custodian support, from discovery through launch, navigating complex API integration constraints.</div>
+            <div class="timeline-bullet"><strong>Innovation lab:</strong> Ran design thinking workshops, co-built prototypes. One prototype shipped as the NLP search feature.</div>
+            <div class="timeline-bullet"><strong>Roadmap owner:</strong> Defined PMS innovation roadmap, aligned priorities with OKRs using RICE and WSJF.</div>
+            <div class="timeline-bullet">Redesigned end-to-end client request workflow: delivery velocity <strong>+38%</strong>, NPS <strong>+35%</strong>.</div>
+            <div class="timeline-bullet">Built product practice from scratch for <strong>20 POs and designers</strong> across four product lines.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Jul 2020 &mdash; Jan 2022</span>
+          <span class="timeline-company">Alithya &middot; Montreal</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Senior Product Manager</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet"><strong>GoTest (0-to-1):</strong> Led discovery for a developer tool &mdash; design sprint, validation interviews, concept-to-MVP roadmap. <strong>1,000+ users in 3 months</strong>.</div>
+            <div class="timeline-bullet"><strong>Desjardins APIs:</strong> Delivered internal APIs and platform enhancements for one of North America's largest financial institutions within SAFe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Mar 2018 &mdash; Jun 2020</span>
+          <span class="timeline-company">SweetIQ &middot; Montreal</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Product Manager</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Led backend platform overhaul: <strong>reduced SLAs by 200%</strong>, cut ops costs <strong>50%+</strong>, decreased support volume <strong>35%</strong>.</div>
+            <div class="timeline-bullet">Built roadmap using OKRs, usage metrics (Mixpanel, GA), and direct customer feedback.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2016 &mdash; Aug 2017</span>
+          <span class="timeline-company">Brains &middot; Paris</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Product Manager</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Defined roadmap for all digital platforms for UGC, one of Europe's largest cinema groups. Shipped mobile app: <strong>App Store rating 1.5 &rarr; 4.5 stars</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Nov 2014 &mdash; Sep 2016</span>
+          <span class="timeline-company">PureAgency &middot; Paris</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Mobile Product Manager</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Shipped multiple apps <strong>0-to-1</strong> across iOS, Android, Xamarin, Apple Watch for Cdiscount (#1 French e-commerce) and LCL Private Bank.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2011 &mdash; Dec 2013</span>
+          <span class="timeline-company">Freelancer EMB &middot; France</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-title">Freelance Mobile Engineer</h3>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Built cross-platform mobile apps end-to-end: architecture, payment integration (PayPal, In-App), database design, and shipping to Google Play Store.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section class="section dark" id="skills">
+  <div class="container">
+    <div class="section-hdr reveal" style="max-width:600px;">
+      <span class="label" style="color:var(--clay)">Skills & Expertise</span>
+      <h2 class="display-l" style="color:var(--ivory-light)">Full-stack product thinking</h2>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card accent-bg reveal reveal-d1">
+        <span class="label">Product Management</span>
+        <h3>Core PM</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Roadmap Ownership</span>
+          <span class="skill-tag">0-to-1</span>
+          <span class="skill-tag">RICE / WSJF</span>
+          <span class="skill-tag">OKRs</span>
+          <span class="skill-tag">Agile / Scrum / SAFe</span>
+          <span class="skill-tag">Design Sprints</span>
+          <span class="skill-tag">Product-Market Fit</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d2">
+        <span class="label">Technical</span>
+        <h3>Engineering DNA</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">APIs</span>
+          <span class="skill-tag">Platform Architecture</span>
+          <span class="skill-tag">AI/ML Features</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Mobile (iOS/Android)</span>
+          <span class="skill-tag">Web Services</span>
+        </div>
+      </div>
+
+      <div class="skill-card olive-bg reveal reveal-d3">
+        <span class="label">AI Tools</span>
+        <h3>AI-Native</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">ChatGPT</span>
+          <span class="skill-tag">Gemini</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">AI Prototyping</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d1">
+        <span class="label">Analytics</span>
+        <h3>Data-Driven</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Mixpanel</span>
+          <span class="skill-tag">Google Analytics</span>
+          <span class="skill-tag">Intercom</span>
+          <span class="skill-tag">Optimizely</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d2">
+        <span class="label">PM Tools</span>
+        <h3>Tooling</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">JIRA</span>
+          <span class="skill-tag">Linear</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">Productboard</span>
+          <span class="skill-tag">Asana</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d3">
+        <span class="label">UX & Design</span>
+        <h3>Craft</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Axure</span>
+          <span class="skill-tag">Sketch</span>
+          <span class="skill-tag">User Interviews</span>
+          <span class="skill-tag">Customer Journey Mapping</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="lang-strip reveal">
+      <div class="lang-item">
+        <span class="lang-name">French</span>
+        <span class="lang-level">Native / Bilingual</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">English</span>
+        <span class="lang-level">Full Professional</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Spanish</span>
+        <span class="lang-level">Elementary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-hdr reveal">
+      <span class="label" style="color:var(--accent)">Education</span>
+      <h2 class="display-l">Technical foundations</h2>
+    </div>
+    <div class="edu-row">
+      <div class="edu-card reveal reveal-d1">
+        <span class="label">France</span>
+        <h3 class="degree">Master, Software Engineering & Management</h3>
+        <span class="school">EFREI &mdash; Paris</span>
+        <span class="year">2007 &mdash; 2013</span>
+      </div>
+      <div class="edu-card reveal reveal-d2">
+        <span class="label">Sweden</span>
+        <h3 class="degree">Master, Information Engineering & Management</h3>
+        <span class="school">Jönköping University</span>
+        <span class="year">2011 &mdash; 2013</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section dark">
+  <div class="container">
+    <div class="cta-block reveal">
+      <span class="label" style="color:var(--clay)">Let's Connect</span>
+      <h2 class="display-serif" style="color:var(--ivory-light)">Ready to help millions think better, create more, and accomplish what matters</h2>
+      <p>I want to build the future of AI products at Anthropic. Let's talk about how I can contribute to the Consumer team.</p>
+      <div class="cta-buttons">
+        <a href="mailto:edmbayen@gmail.com?subject=Product%20Manager%2C%20Consumer%20%E2%80%94%20Let's%20Talk&body=Hi%20Edgard%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20the%20Product%20Manager%20role%20at%20Anthropic." class="btn btn-light btn-lg">
+          Send me an email
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/edgardmbayen" target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
+          LinkedIn
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-brand-logo"><span class="mark">E</span> Edgard Mbayen Mbayen</span>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <span class="label">Contact</span>
+          <a href="mailto:edmbayen@gmail.com">edmbayen@gmail.com</a>
+          <a href="tel:+14384913306">+1 438 491 3306</a>
+        </div>
+        <div class="footer-col">
+          <span class="label">Social</span>
+          <a href="https://linkedin.com/in/edgardmbayen" target="_blank">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <span class="label">Location</span>
+          <a>Montreal, Quebec</a>
+          <a>Canada</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Edgard Mbayen Mbayen</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1200);
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => ro.observe(el));
+
+// Counters
+const counters = document.querySelectorAll('.counter');
+const co = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const decimals = parseInt(el.dataset.decimals) || 0;
+      const dur = 2000;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const v = eased * target;
+        el.textContent = prefix + (decimals > 0 ? v.toFixed(decimals) : Math.round(v).toLocaleString()) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      co.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => co.observe(el));
+
+// Hero canvas — organic warm gradient mesh
+(function() {
+  const c = document.getElementById('heroCanvas');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let w, h, t = 0;
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const parent = c.parentElement;
+    w = parent.clientWidth; h = parent.clientHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    ctx.scale(dpr, dpr);
+    c.style.width = w + 'px'; c.style.height = h + 'px';
+  }
+  function draw() {
+    t += 0.002;
+    ctx.clearRect(0, 0, w, h);
+    // Warm organic blobs matching Anthropic palette
+    const blobs = [
+      { x: w*0.3 + Math.sin(t*0.7)*50, y: h*0.3 + Math.cos(t*0.5)*40, r: w*0.4, c: 'rgba(198,97,63,0.08)' },
+      { x: w*0.7 + Math.cos(t*0.6)*60, y: h*0.6 + Math.sin(t*0.8)*30, r: w*0.35, c: 'rgba(120,140,93,0.06)' },
+      { x: w*0.5 + Math.sin(t*0.4)*40, y: h*0.7 + Math.cos(t*0.9)*50, r: w*0.3, c: 'rgba(188,209,202,0.1)' },
+      { x: w*0.6 + Math.cos(t*0.5)*30, y: h*0.2 + Math.sin(t*0.7)*60, r: w*0.25, c: 'rgba(217,119,87,0.05)' },
+    ];
+    blobs.forEach(b => {
+      const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+      g.addColorStop(0, b.c);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    });
+    // Subtle organic lines
+    ctx.strokeStyle = 'rgba(198,97,63,0.06)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 5; i++) {
+      ctx.beginPath();
+      const y0 = h * (0.2 + i * 0.15) + Math.sin(t + i) * 20;
+      ctx.moveTo(0, y0);
+      for (let x = 0; x <= w; x += 20) {
+        const y = y0 + Math.sin(x * 0.008 + t * 2 + i) * 30 + Math.cos(x * 0.005 + t + i * 0.5) * 15;
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); draw();
+  window.addEventListener('resize', resize);
+})();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+
+</body>
+</html>
